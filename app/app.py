@@ -4,12 +4,16 @@ import pandas as pd
 import pickle
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
+
+# Ruta relativa al modelo desde la ubicación del app.py
+base_path = os.path.dirname(os.path.abspath(__file__))
 
 #Cargamos el modelo entrenado y el codificador de barrios
-with open("E:/Archivos vscode/predictor-alquiler-madrid/models/model.pkl", "rb") as f:
+with open(os.path.join(base_path, "../models/model.pkl"), "rb") as f:
     modelo = pickle.load(f)
 
-with open("E:/Archivos vscode/predictor-alquiler-madrid/models/label_encoder.pkl", "rb") as f:
+with open(os.path.join(base_path, "../models/label_encoder.pkl"), "rb") as f:
     le = pickle.load(f)
 
 #Título de la aplicación
@@ -59,7 +63,7 @@ if st.button("Predecir Precio de Alquiler"):
 st.subheader("Contexto del Mercado de Alquiler en Madrid")
 
 #Cargamos el dataset para mostrar las estadísticas 
-df = pd.read_csv("E:/Archivos vscode/predictor-alquiler-madrid/data/processed/alquiler_madrid_limpio.csv")
+df = pd.read_csv(os.path.join(base_path, "../data/processed/alquiler_madrid_limpio.csv"))
 
 #Añadimos dos columnas para mostrar los barrios más caros y más baratos
 col1, col2 = st.columns(2)
