@@ -4,7 +4,7 @@ Predictor de alquileres en Madrid desarrollado con Python y Streamlit.
 Permite filtrar los datos por habitaciones, metros y barrio de forma interactiva.
 
 ## Demo en vivo
-[Ver dashboard](https://oscardzz-predictor-alquiler-madrid.streamlit.app)
+[Ver dashboard](https://predictor-alquiler-madrid-ls2ymwjtmwm5cn6meve2ix.streamlit.app)
 
 ## Tecnologías
 - Python
