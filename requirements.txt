@@ -1,5 +1,8 @@
-streamlit
 pandas
-pickle
+streamlit
 matplotlib
-seaborn 
+seaborn
+scikit-learn
+requests
+sklearn
+pickle
