@@ -1,8 +1,8 @@
 pandas
 streamlit
+pandas
+numpy
+scikit-learn
 matplotlib
 seaborn
-scikit-learn
 requests
-sklearn
-pickle
