@@ -68,7 +68,7 @@ df = pd.read_csv(os.path.join(base_path, "../data/processed/alquiler_madrid_limp
 #Añadimos dos columnas para mostrar los barrios más caros y más baratos
 col1, col2 = st.columns(2)
 
-#Añadimos los 5 barrios más caros
+#Añadimos los 5 barrios más caros 
 with col1:
     st.markdown("### Barrios más caros")
     top_caros = df.groupby("barrio")["precio_alquiler"].mean().round(0).sort_values(ascending=False).head(5)
@@ -89,35 +89,51 @@ fig, ax = plt.subplots(figsize=(10, 5))
 top_barrios = df['barrio'].value_counts().head(10).index
 df_top_barrios = df[df['barrio'].isin(top_barrios)]
 
-sns.boxplot(x="barrio", y="precio_alquiler", data=df_top_barrios, ax=ax, palette="Set2")
+# Creamos el boxplot utilizando seaborn
+sns.boxplot(
+    x="barrio",
+    y="precio_alquiler",
+    data=df_top_barrios,
+    hue="barrio",
+    legend=False
+)
+
 ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
 ax.set_title("Distribución de precios por barrio más caros")
 ax.set_xlabel("Barrio")
 ax.set_ylabel("Precio de alquiler (€)")
 
-# Mostramos el gráfico
+#Mostramos el gráfico
 st.pyplot(fig)
 
-# Creamos un gráfico de los barrios con precio medio mas bajo 
+#Creamos un gráfico de los barrios con precio medio mas bajo 
 fig0, ax = plt.subplots(figsize=(10, 5))
 
-#Creamos un boxplot de precio por barrio con seaborn de 10 barrios más baratos
+#Definimos los 10 barrios con precio medio más bajo
 low_barrios = df['barrio'].value_counts().tail(10).index
 df_low_barrios = df[df['barrio'].isin(low_barrios)]
-sns.boxplot(x="barrio", y="precio_alquiler", data=df_low_barrios, ax=ax, palette="Set2")
 
-# Rotamos las etiquetas del eje x para que se vean mejor
+#Creamos un boxplot de precio por barrio con seaborn de 10 barrios más baratos
+sns.boxplot(
+    x="barrio",
+    y="precio_alquiler",
+    data=df_top_barrios,
+    hue="barrio",
+    legend=False
+)
+
+#Rotamos las etiquetas del eje x para que se vean mejor
 ax.set_xticklabels(ax.get_xticklabels(), rotation=90)
 
-# Asignamos títulos a los ejes y al gráfico
+#Asignamos títulos a los ejes y al gráfico
 ax.set_title("Distribución de precios por barrio más baratos")
 ax.set_xlabel("Barrio")
 ax.set_ylabel("Precio de alquiler (€)")
 
-# Mostramos el gráfico
+#Mostramos el gráfico
 st.pyplot(fig0)
 
-# Dispersión metros cuadrados vs precio
+#Dispersión metros cuadrados vs precio
 fig1, ax = plt.subplots(figsize=(10, 5))
 
 #Creamos un gráfico de dispersión de metros cuadrados vs precio utilizando seaborn
